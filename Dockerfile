@@ -4,7 +4,7 @@ RUN go get && go build
 
 
 RUN mkdir -p /app
-COPY qovery-go-client-example-postgresql /app/server
+COPY main /app/server
 WORKDIR /app
 
 # Choose the port to publicly expose to the internet
