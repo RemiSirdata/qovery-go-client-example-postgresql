@@ -1,0 +1,17 @@
+application:
+  name: qovery-go-client-example-postgresql
+  project: qovery-go-client-example-postgresql
+  cloud_region: aws/eu-west-3
+  publicly_accessible: true
+  private-port: 8080
+  public-port: 80
+databases:
+- type: postgresql
+  version: "11.5"
+  name: my-postgresql-3498225
+routers:
+- name: main
+  routes:
+  - application_name: qovery-go-client-example-postgresql
+    paths:
+    - /*
