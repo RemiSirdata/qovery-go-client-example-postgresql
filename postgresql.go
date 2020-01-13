@@ -29,17 +29,20 @@ func printDbStatus(ctx iris.Context) {
 	qv, err := qovery.New(configurationFilename)
 	if err != nil {
 		ctx.Writef("fail to init qv client: %s", err.Error())
+		return
 	}
 
 	dbConf := qv.GetDatabaseConfigurationByName(*databaseName)
 	if dbConf == nil {
 		ctx.Writef("fail to get database name %s", *databaseName)
+		return
 	}
 
 	dbURI := fmt.Sprintf("host=%s user=%s dbname=%s sslmode=disable password=%s port=%d", dbConf.Host, dbConf.Username, dbConf.Name, dbConf.Password, dbConf.Port)
 	db, err := gorm.Open("postgres", dbURI)
 	if err != nil {
 		ctx.Writef("fail to connect to dbConf: %s", err.Error())
+		return
 	}
 	defer db.Close()
 	ctx.Writef("connection to '%s' successful", dbConf.Name)
