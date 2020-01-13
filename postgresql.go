@@ -19,7 +19,7 @@ func main() {
 	flag.Parse()
 
 	app := iris.New()
-	app.Get("/database", func(ctx iris.Context) {
+	app.Get("/databases", func(ctx iris.Context) {
 		printDbStatus(ctx)
 	})
 	app.Run(iris.Addr(*bind))
@@ -31,19 +31,21 @@ func printDbStatus(ctx iris.Context) {
 		ctx.Writef("fail to init qv client: %s", err.Error())
 		return
 	}
-
-	dbConf := qv.GetDatabaseConfigurationByName(*databaseName)
-	if dbConf == nil {
-		ctx.Writef("fail to get database name %s", *databaseName)
+	databases := qv.GetDatabaseConfigurations()
+	if len(databases) == 0 {
+		ctx.Writef("no databases found")
 		return
 	}
-
-	dbURI := fmt.Sprintf("host=%s user=%s dbname=%s sslmode=disable password=%s port=%d", dbConf.Host, dbConf.Username, dbConf.Name, dbConf.Password, dbConf.Port)
-	db, err := gorm.Open("postgres", dbURI)
-	if err != nil {
-		ctx.Writef("fail to connect to dbConf: %s", err.Error())
-		return
+	for _, dbConf := range qv.GetDatabaseConfigurations() {
+		ctx.Writef("database: %s\n", dbConf.Name)
+		dbURI := fmt.Sprintf("host=%s user=%s dbname=%s sslmode=disable password=%s port=%d", dbConf.Host, dbConf.Username, dbConf.Name, dbConf.Password, dbConf.Port)
+		db, err := gorm.Open("postgres", dbURI)
+		if err != nil {
+			ctx.Writef("fail to connect to dbConf: %s", err.Error())
+			continue
+		}
+		ctx.Writef("connection to '%s' successful", dbConf.Name)
+		db.Close()
+		ctx.Writef("\n")
 	}
-	defer db.Close()
-	ctx.Writef("connection to '%s' successful", dbConf.Name)
 }
