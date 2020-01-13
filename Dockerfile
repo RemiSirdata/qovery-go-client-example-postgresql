@@ -1,11 +1,9 @@
 FROM golang:stretch
 
-RUN go get && go build -o main postgresql.go
 
-
-RUN mkdir -p /app
-COPY main /app/server
 WORKDIR /app
+COPY . /app
+RUN go get && go build -o server postgresql.go
 
 # Choose the port to publicly expose to the internet
 EXPOSE 8080
@@ -14,4 +12,4 @@ EXPOSE 8080
 RUN useradd -ms /bin/bash qovery
 USER qovery
 
-CMD app/server -bind=":8080"
+CMD /app/server -bind=":8080"
