@@ -1,6 +1,6 @@
 FROM golang:stretch
 
-RUN go get && go build
+RUN go get && go build -o main postgresql.go
 
 
 RUN mkdir -p /app
