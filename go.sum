@@ -4,8 +4,8 @@ github.com/Joker/hpp v0.0.0-20180418125244-6893e659854a h1:PiDAizhfJbwZMISZ1Itx1
 github.com/Joker/hpp v0.0.0-20180418125244-6893e659854a/go.mod h1:MzD2WMdSxvbHw5fM/OXOFily/lipJWRc9C1px0Mt0ZE=
 github.com/Joker/jade v1.0.0 h1:lOCEPvTAtWfLpSZYMOv/g44MGQFAolbKh2khHHGu0Kc=
 github.com/Joker/jade v1.0.0/go.mod h1:efZIdO0py/LtcJRSa/j2WEklMSAw84WV0zZVMxNToB8=
-github.com/Qovery/qovery-go-client v0.0.1 h1:+8enP58urgceX4A5JOsUVTxIGMcpGRna9Tv5bQhsuMQ=
-github.com/Qovery/qovery-go-client v0.0.1/go.mod h1:8qo8vpVCPD0alO6oVHhJGJrz9PuK6WzczBwgI639Zb0=
+github.com/Qovery/qovery-go-client v0.0.2 h1:UbYbNMfaN7vUQC/twU5+s1y05QtlexMYeV9Kmma5lkM=
+github.com/Qovery/qovery-go-client v0.0.2/go.mod h1:8qo8vpVCPD0alO6oVHhJGJrz9PuK6WzczBwgI639Zb0=
 github.com/Shopify/goreferrer v0.0.0-20181106222321-ec9c9a553398 h1:WDC6ySpJzbxGWFh4aMxFFC28wwGp5pEuoTtvA4q/qQ4=
 github.com/Shopify/goreferrer v0.0.0-20181106222321-ec9c9a553398/go.mod h1:a1uqRtAwp2Xwc6WNPJEufxJ7fx3npB4UV/JOLmbu5I0=
 github.com/ajg/form v1.5.1 h1:t9c7v8JUKu/XxOGBU0yjNpaMloxGEJhUkqFRq0ibGeU=

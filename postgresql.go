@@ -7,6 +7,7 @@ import (
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
 	"github.com/kataras/iris"
+	"log"
 )
 
 var (
@@ -38,7 +39,8 @@ func printDbStatus(ctx iris.Context) {
 	}
 	for _, dbConf := range qv.GetDatabaseConfigurations() {
 		ctx.Writef("database: %s\n", dbConf.Name)
-		dbURI := fmt.Sprintf("host=%s user=%s dbname=%s sslmode=disable password=%s port=%d", dbConf.Host, dbConf.Username, dbConf.Name, dbConf.Password, dbConf.Port)
+		dbURI := fmt.Sprintf("host=%s user=%s dbname=%s sslmode=disable password=%s port=%d", dbConf.FQDN, dbConf.Username, dbConf.Name, dbConf.Password, dbConf.Port)
+		log.Print(dbURI)
 		db, err := gorm.Open("postgres", dbURI)
 		if err != nil {
 			ctx.Writef("fail to connect to dbConf: %s", err.Error())
